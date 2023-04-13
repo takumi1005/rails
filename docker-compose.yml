@@ -16,7 +16,12 @@ services:
     platform: linux/amd64
     volumes:
       - db-volume:/var/lib/mysql
+    ports:
+      - "4306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_DATABASE: root
+      MYSQL_PASSWORD: password
 volumes:
   db-volume:
