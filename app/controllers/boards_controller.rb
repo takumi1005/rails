@@ -31,10 +31,15 @@ class BoardsController < ApplicationController
 	end
 
 	def update
-		@board.update(board_params)
-
-		redirect_to @board
-	end
+    if @board.update(board_params)
+      redirect_to @board
+    else
+      redirect_to :back, flash: {
+        board: @board,
+        error_messages: @board.errors.full_messages
+      }
+    end
+  end
 
 	def destroy
 		@board.delete
